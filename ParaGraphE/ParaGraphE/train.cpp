@@ -197,8 +197,9 @@ void method_ptr_binding(string method) {
 	}
 }
 
-int main(int argc, char **argv) {
+void train() {
 	//processing the args
+	/*
 	int pos;
 	if ((pos = arg_handler("-nthreads", argc, argv)) > 0) nthreads = atoi(argv[pos + 1]);
 	if ((pos = arg_handler("-dim", argc, argv)) > 0) embedding_dim = atoi(argv[pos + 1]);
@@ -215,6 +216,7 @@ int main(int argc, char **argv) {
 	if ((pos = arg_handler("-method", argc, argv)) > 0) method = string(argv[pos + 1]);
 	if ((pos = arg_handler("-init_from_file", argc, argv)) > 0) init_from_file = atoi(argv[pos + 1]);
 	if ((pos = arg_handler("-use_tmp", argc, argv)) > 0) use_tmp = atoi(argv[pos + 1]);
+	*/
 	cout << "args process done." << endl;
 	
 	cout << "args settings:" << endl
