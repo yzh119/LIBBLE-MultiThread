@@ -3,3 +3,4 @@
 *.o
 *.cxx
 *.pyc
+trans.py
