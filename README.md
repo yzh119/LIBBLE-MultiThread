@@ -8,3 +8,9 @@ It's a wrapper of [LIBBLE-MultiThread](https://github.com/LIBBLE/LIBBLE-MultiThr
 
 	make build
 	sudo make install
+
+```python
+import _trans
+_trans.train(...)
+_trans.test(...)
+```
