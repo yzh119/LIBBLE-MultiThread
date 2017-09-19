@@ -6,4 +6,5 @@ It's a wrapper of [LIBBLE-MultiThread](https://github.com/LIBBLE/LIBBLE-MultiThr
 
 ## Usage
 
-	make share
+	make build
+	sudo make install
