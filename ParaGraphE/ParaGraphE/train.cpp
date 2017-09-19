@@ -66,15 +66,6 @@ vector<int> r_count;	//count the times a relation appears
 vector<double> tph, hpt;	
 set<tuple<int, int, int> > triple_count;	
 
-int arg_handler(string str, int argc, char **argv) {
-	int pos;
-	for (pos = 0; pos < argc; pos++) {
-		if (str.compare(argv[pos]) == 0) {
-			return pos;
-		}
-	}
-}
-
 void read_input() {
 	int h, r, t;
 	ifstream file;
@@ -197,28 +188,27 @@ void method_ptr_binding(string method) {
 	}
 }
 
-void train() {
-	//processing the args
-	/*
-	int pos;
-	if ((pos = arg_handler("-nthreads", argc, argv)) > 0) nthreads = atoi(argv[pos + 1]);
-	if ((pos = arg_handler("-dim", argc, argv)) > 0) embedding_dim = atoi(argv[pos + 1]);
-	dim2 = embedding_dim;	//dim2 = embedding_dim in default setting
-	if ((pos = arg_handler("-dim2", argc, argv)) > 0) dim2 = atoi(argv[pos + 1]);
-	if ((pos = arg_handler("-rate", argc, argv)) > 0) learning_rate = atof(argv[pos + 1]);
-	if ((pos = arg_handler("-orth_value", argc, argv)) > 0) orth_value = atof(argv[pos + 1]);
-	if ((pos = arg_handler("-corr_method", argc, argv)) > 0) corr_method = atoi(argv[pos + 1]);
-	if ((pos = arg_handler("-margin", argc, argv)) > 0) margin = atof(argv[pos + 1]);
-	if ((pos = arg_handler("-nepoches", argc, argv)) > 0) nepoches = atoi(argv[pos + 1]);
-	if ((pos = arg_handler("-nbatches", argc, argv)) > 0) nbatches = atoi(argv[pos + 1]);
-	if ((pos = arg_handler("-l1_norm", argc, argv)) > 0) l1_norm = atoi(argv[pos + 1]);
-	if ((pos = arg_handler("-path", argc, argv)) > 0) data_path = string(argv[pos + 1]);
-	if ((pos = arg_handler("-method", argc, argv)) > 0) method = string(argv[pos + 1]);
-	if ((pos = arg_handler("-init_from_file", argc, argv)) > 0) init_from_file = atoi(argv[pos + 1]);
-	if ((pos = arg_handler("-use_tmp", argc, argv)) > 0) use_tmp = atoi(argv[pos + 1]);
-	*/
-	cout << "args process done." << endl;
-	
+void train(int arg_nthreads, int arg_dim, int arg_dim2, double arg_lr,
+	double arg_orth, int arg_corr, double arg_margin, int arg_nepoches,
+	int arg_nbatches, double arg_l1, string arg_path, string arg_method,
+	int arg_init_from_file, int arg_use_tmp) {
+	nthreads = arg_nthreads;
+	embedding_dim = arg_dim;
+	if (arg_dim2 == -1)
+		dim2 = embedding_dim
+	else
+		dim2 = arg_dim2;
+	learning_rate = arg_lr;
+	orth_value = arg_orth;
+	corr_method = arg_corr;
+	margin = arg_margin;
+	nepoches = arg_nepoches;
+	nbatches = arg_nbatches;
+	l1_norm = arg_l1;
+	data_path = arg_path;
+	method = arg_method;
+	init_from_file = arg_init_from_file;
+	use_tmp = arg_use_tmp;
 	cout << "args settings:" << endl
 		<< "----------" << endl
 		<< "method " << method << endl

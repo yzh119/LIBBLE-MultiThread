@@ -8,5 +8,5 @@ test: $(TRANS_FILE) test.cpp
 	g++ $(TRANS_FILE) test.cpp -o test $(COMPILE_ARG)
 share:
 	swig -python -c++ trans.i
-	g++ -fPIC -c $(TRANS_FILE) math_func.hpp train.cpp trans_wrap.cxx -I/usr/include/python2.7 $(COMPILE_ARG)
-	g++ -shared train.o trans_wrap.o -o _trans.so
+	g++ -fPIC -c $(TRANS_FILE) math_func.hpp train.cpp test.cpp trans_wrap.cxx -I/usr/include/python2.7 $(COMPILE_ARG)
+	g++ -shared train.o test.o trans_wrap.o -o _trans.so

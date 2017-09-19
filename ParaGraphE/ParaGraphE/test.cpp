@@ -50,15 +50,6 @@ vector<int> rank_sum, hits_10, hits_1, frank_sum, fhits_10, fhits_1;
 vector<double> mrr_sum, fmrr_sum;
 set<tuple<int, int, int> > triple_count;
 
-int arg_handler(string str, int argc, char **argv) {
-	int pos;
-	for (pos = 0; pos < argc; pos++) {
-		if (str.compare(argv[pos]) == 0) {
-			return pos;
-		}
-	}
-}
-
 void initial() {
 	ifstream file;	
 	
@@ -200,15 +191,12 @@ void method_ptr_binding(string method) {
 	}
 }
 
-int main(int argc, char **argv) {
-	//arg processing
-	int pos;
-	if ((pos = arg_handler("-nthreads", argc, argv)) > 0) nthreads = atoi(argv[pos + 1]);
-	if ((pos = arg_handler("-path", argc, argv)) > 0) data_path = string(argv[pos + 1]);
-	if ((pos = arg_handler("-batch_size", argc, argv)) > 0) batch_size = atoi(argv[pos + 1]);
-	if ((pos = arg_handler("-method", argc, argv)) > 0) method = string(argv[pos + 1]);
-	if ((pos = arg_handler("-l1_norm", argc, argv)) > 0) l1_norm = atoi(argv[pos + 1]); 
-	cout << "arg processing done." << endl;
+void test(int arg_nthreads, string arg_path, int arg_batch_size, string arg_method, int arg_l1) {
+	nthreads = arg_nthreads;
+	data_path = arg_path;
+	batch_size = arg_batch_size;
+	method = arg_method;
+	l1_norm = arg_l1;
 	
 	cout << "args settings: " << endl
 		<< "----------" << endl
@@ -240,7 +228,7 @@ int main(int argc, char **argv) {
 		count += batch_size;
 	}
 	auto end = chrono::high_resolution_clock::now();
-    chrono::duration<double> diff = end-start;
+	chrono::duration<double> diff = end-start;
 	cout << "testing process done, total time: " << diff.count() << " s." << endl;
 	
 	//calculate the final result
